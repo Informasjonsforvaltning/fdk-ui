@@ -1,0 +1,157 @@
+@import '@fdk-frontend/ui/core/mixins';
+
+.header {
+    + main {
+        padding-top: 74px;
+
+        @media (max-width: 650px) {
+            padding-top: 63px;
+        }
+    }
+
+    &.frontpageHeader {
+        + main {
+            padding-top: 0;
+        }
+
+        .headerOuter {
+            position: absolute;
+
+            &:not(.headerSticky) {
+                background: transparent;
+
+                .headerLogo {
+                    &:not(:focus-visible):not(:hover) {
+                        color: white;
+                    }
+                }
+
+                .headerToolbar {
+                    a,
+                    button {
+                        &:not(:hover):not(:focus-visible) {
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.skipToMain {
+    position: fixed;
+    z-index: 200;
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    border: 0;
+    border-bottom: 2px solid black;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: none;
+
+    &:not(:focus) {
+        @include sr-only();
+    }
+}
+
+.headerOuter {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    transition: all linear 200ms;
+    max-height: 100vh;
+    background: white;
+
+    @media (max-width: 460px) {
+        overflow: auto;
+    }
+
+    &.headerSticky {
+        position: fixed;
+        background: white;
+        box-shadow: var(--fds-shadow-medium);
+    }
+
+    .headerInner {
+        display: flex;
+        align-items: center;
+        // max-width:1280px;
+        margin: auto;
+        padding: 1rem 2rem;
+        justify-content: space-between;
+        position: relative;
+        z-index: 102;
+        container-type: inline-size;
+
+        &.full {
+            max-width: none;
+            padding: 2rem 4rem;
+        }
+
+        .headerLogo {
+            &:not(:focus-visible):not(:hover) {
+                color: var(--color-text);
+            }
+        }
+
+        a,
+        button {
+            &:focus-visible {
+                @include fds-focus-visible-block();
+                background: var(--fds-semantic-border-focus-outline);
+                color: black !important;
+            }
+        }
+
+        .headerToolbar {
+            display: flex;
+            gap: 1rem;
+
+            a,
+            button {
+                text-decoration: none;
+
+                &:not(:hover) {
+                    color: var(--fds-semantic-surface-action-first-default);
+                }
+
+                &:last-child:not(:focus-visible) {
+                    color: white;
+                }
+            }
+
+            @container (max-width: 500px) {
+                gap: 0.5rem;
+
+                a,
+                button {
+                    svg + span {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 400px) {
+            padding: 1rem 1.5rem;
+
+            .headerToolbar {
+                a:last-child {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .drawerInner {
+        max-width: 1000px;
+        margin: auto;
+        padding: 1rem 2rem;
+
+        @media (max-width: 400px) {
+            padding: 1rem 1.5rem;
+        }
+    }
+}
