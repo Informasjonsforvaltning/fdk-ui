@@ -1,4 +1,4 @@
-import OrgLogo from '../org-logo';
+import { OrgLogo } from '../org-logo';
 import styles from './styles.module.scss';
 
 const AppBar = () => {
@@ -9,4 +9,4 @@ const AppBar = () => {
     );
 };
 
-export default AppBar;
+export { AppBar };
