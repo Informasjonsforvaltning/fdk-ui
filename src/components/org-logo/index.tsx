@@ -10,7 +10,7 @@ export type OrgLogoProps = {
 
 const OrgLogo = ({ className, orgLogoSrc, ...props }: OrgLogoProps) => {
     return (
-        <div className={cn(styles.avatar, className)} {...props}>
+        <div className={cn(styles.orgLogo, className)} {...props}>
             {orgLogoSrc ? (
                 <img
                     aria-hidden
@@ -24,4 +24,4 @@ const OrgLogo = ({ className, orgLogoSrc, ...props }: OrgLogoProps) => {
     );
 };
 
-export default OrgLogo;
+export { OrgLogo };

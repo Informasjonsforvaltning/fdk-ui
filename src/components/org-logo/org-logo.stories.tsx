@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import OrgLogo from '.';
+import { OrgLogo } from '.';
 
 const meta: Meta<typeof OrgLogo> = {
     component: OrgLogo,

@@ -8,24 +8,41 @@ export default defineConfig({
     dts({
       insertTypesEntry: true,
       rollupTypes: true,
-      exclude: ['**/*.stories.tsx', '**/*.test.tsx']
+      exclude: ['**/*.stories.tsx', '**/*.test.tsx', '**/*.spec.tsx']
     })
   ],
+  css: {
+    modules: {
+      localsConvention: 'camelCase'
+    }
+  },
   build: {
     lib: {
       entry: 'src/index.ts',
-      name: 'SharedUI',
-      formats: ['es', 'umd'],
-      fileName: (format) => `shared-ui.${format}.js`
+      name: 'FellesDatakatalogUI',
+      formats: ['es', 'cjs'],
+      fileName: (format) => (format === 'cjs' ? 'shared-ui.cjs' : `shared-ui.${format}.js`)
     },
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: [
+        'react',
+        'react-dom',
+        'classnames',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        /^@digdir\/designsystemet-react(\/.*)?$/
+      ],
       output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM'
+        // No UMD globals needed when emitting CJS/ESM only
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name?.endsWith('.css')) {
+            return 'styles.css';
+          }
+          return assetInfo.name || 'asset';
         }
       }
-    }
+    },
+    sourcemap: true,
+    minify: 'terser'
   }
 });
