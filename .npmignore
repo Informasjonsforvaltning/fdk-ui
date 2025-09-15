@@ -1,0 +1,34 @@
+# Source files
+src/
+*.ts
+*.tsx
+*.scss
+
+# Development files
+.storybook/
+storybook-static/
+.vscode/
+.idea/
+
+# Build tools
+vite.config.ts
+vitest.workspace.ts
+tsconfig.json
+
+# Testing
+coverage/
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+
+# Development dependencies
+node_modules/
+
+# Git
+.git/
+.gitignore
+
+# Misc
+.DS_Store
+*.log 
