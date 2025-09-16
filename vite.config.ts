@@ -20,19 +20,20 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: 'FellesDatakatalogUI',
-      formats: ['es', 'umd'],
-      fileName: (format) => `shared-ui.${format}.js`
+      formats: ['es', 'cjs'],
+      fileName: (format) => (format === 'cjs' ? 'shared-ui.cjs' : `shared-ui.${format}.js`)
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'classnames', 'react/jsx-runtime', 'react/jsx-dev-runtime'],
+      external: [
+        'react',
+        'react-dom',
+        'classnames',
+        'react/jsx-runtime',
+        'react/jsx-dev-runtime',
+        /^@digdir\/designsystemet-react(\/.*)?$/
+      ],
       output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-          'classnames': 'classNames',
-          'react/jsx-runtime': 'jsxRuntime',
-          'react/jsx-dev-runtime': 'jsxDevRuntime'
-        },
+        // No UMD globals needed when emitting CJS/ESM only
         assetFileNames: (assetInfo) => {
           if (assetInfo.name?.endsWith('.css')) {
             return 'styles.css';
