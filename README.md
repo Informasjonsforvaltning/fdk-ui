@@ -1,4 +1,4 @@
-# FDK-UI
+# @fellesdatakatalog/ui
 
 Library of React components for FDK frontend apps.
 
