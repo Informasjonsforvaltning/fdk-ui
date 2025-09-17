@@ -1,118 +1,24 @@
-# @fellesdatakatalog/ui
+# FDK-UI
 
-A React UI component library for Felles Datakatalog applications.
+Library of React components for FDK frontend apps.
 
-## Installation
-
-```bash
-npm install @fellesdatakatalog/ui
-# or
-yarn add @fellesdatakatalog/ui
-```
-
-## Usage
-
-```tsx
-import { OrgLogo, AppBar } from '@fellesdatakatalog/ui';
-
-function MyApp() {
-  return (
-    <div>
-      <AppBar />
-      <OrgLogo orgLogoSrc="/path/to/logo.png" />
-    </div>
-  );
-}
-```
-
-## Components
-
-### OrgLogo
-
-A component for displaying organization logos with fallback to a building icon.
-
-```tsx
-import { OrgLogo } from '@fellesdatakatalog/ui';
-
-// With logo
-<OrgLogo orgLogoSrc="/path/to/logo.png" />
-
-// Without logo (shows building icon)
-<OrgLogo />
-
-// With custom className
-<OrgLogo className="custom-class" />
-```
-
-**Props:**
-- `orgLogoSrc?: string | null` - URL of the organization logo
-- `className?: string` - Additional CSS classes
-- All standard HTML div attributes
-
-### AppBar
-
-Application bar component for navigation and branding.
-
-```tsx
-import { AppBar } from '@fellesdatakatalog/ui';
-
-<AppBar />
-```
-
-## Development
+## Getting started
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
+- [Node.js](https://nodejs.org/en/download/) >=20.11.1
+- [yarn](https://yarnpkg.com/getting-started/install) >=4.9.4
 
-### Setup
+### Running locally
+
+Clone the repository:
 
 ```bash
-npm install
-# or
+git clone https://github.com/Informasjonsforvaltning/fdk-ui.git --recurse-submodules
+cd fdk-ui
+corepack enable
 yarn install
-```
-
-### Scripts
-
-- `npm run build` / `yarn build` - Build the library
-- `npm run test` / `yarn test` - Run tests
-- `npm run storybook` / `yarn storybook` - Start Storybook
-- `npm run build-storybook` / `yarn build-storybook` - Build Storybook
-
-### Storybook
-
-View all components and their variations in Storybook:
-
-```bash
-npm run storybook
-# or
 yarn storybook
 ```
 
-## Building for Production
-
-```bash
-npm run build
-# or
-yarn build
-```
-
-This will create:
-- `dist/shared-ui.es.js` - ES module bundle
-- `dist/shared-ui.umd.js` - UMD bundle
-- `dist/types/` - TypeScript declarations
-- `dist/styles.css` - Compiled CSS
-
-## Publishing
-
-```bash
-npm publish
-# or
-yarn publish
-```
-
-## License
-
-MIT
+Go to http://localhost:6006 (should open automatically)
