@@ -262,6 +262,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@digdir/designsystemet-css@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@digdir/designsystemet-css@npm:1.5.0"
+  checksum: 10c0/67110f100dac10d553b39b2ae8e204acd36cb0f464ebc44f3de0da81ad65bb5fe32d0caf843854d4b811468c0ddc4515a6c59df5171630690ad03b0a825b7639
+  languageName: node
+  linkType: hard
+
 "@digdir/designsystemet-react@npm:^1.1.9":
   version: 1.1.9
   resolution: "@digdir/designsystemet-react@npm:1.1.9"
@@ -279,6 +286,13 @@ __metadata:
     react: ">=18.3.1 || ^19.0.0"
     react-dom: ">=18.3.1 || ^19.0.0"
   checksum: 10c0/61a3473dd830e37502c90aae99e3295ab6e315c221014d564acfb889a7f29dcbaa15162fc4ea86e9cbf05e4bf59531631f36ea583888b09fffa1e14068b902ad
+  languageName: node
+  linkType: hard
+
+"@digdir/designsystemet-theme@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@digdir/designsystemet-theme@npm:1.5.0"
+  checksum: 10c0/a736043acc7bdb0895f2538ec70ccb5c3d3147881844a585ff068f8cf75594d0055d96c3fb9986203a6e95b9ef714cc8cd764342f8e1f3ae8b806d4922727d98
   languageName: node
   linkType: hard
 
@@ -469,7 +483,9 @@ __metadata:
   resolution: "@fellesdatakatalog/ui@workspace:."
   dependencies:
     "@chromatic-com/storybook": "npm:^3.2.7"
+    "@digdir/designsystemet-css": "npm:^1.5.0"
     "@digdir/designsystemet-react": "npm:^1.1.9"
+    "@digdir/designsystemet-theme": "npm:^1.5.0"
     "@navikt/aksel-icons": "npm:^7.11.0"
     "@storybook/addon-essentials": "npm:^8.6.14"
     "@storybook/addon-interactions": "npm:^8.6.14"
