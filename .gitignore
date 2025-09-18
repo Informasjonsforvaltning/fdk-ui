@@ -100,9 +100,8 @@ dist
 # vuepress build output
 .vuepress/dist
 
-# vuepress v2.x temp and cache directory
+# vuepress v2.x temp (cache directory handled by above)
 .temp
-.cache
 
 # vitepress build output
 **/.vitepress/dist
@@ -137,3 +136,9 @@ dist
 
 *storybook.log
 storybook-static/
+
+# AI
+.claude/
+CLAUDE.md
+
+.idea
