@@ -7,18 +7,18 @@ on:
 
 jobs:
   release:
-    if: github.actor != 'github-actions[bot]'
+    if: github.actor != 'fdk-bot'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org/'
@@ -42,20 +42,32 @@ jobs:
 
       - name: Configure git user
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "fdk-bot"
+          git config user.email "fdk-bot@users.noreply.github.com"
 
       - name: Bump version (patch) and create tag
-        run: npm version patch -m "ci: release %s"
+        run: |
+          npm version patch -m "ci: release %s"
 
       - name: Publish to npm
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --access public
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_BOT_TOKEN }}
+        run: |
+          if npm publish --access public; then
+            echo "✅ Package published successfully"
+          else
+            echo "❌ npm publish failed, rolling back git tag"
+            git tag -d "v$(node -p "require('./package.json').version")"
+            exit 1
+          fi
 
       - name: Push changes and tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: git push origin HEAD:main --follow-tags
-
-
+        run: |
+          if git push origin HEAD:main --follow-tags; then
+            echo "✅ Changes and tags pushed successfully"
+          else
+            echo "❌ Failed to push changes to repository"
+            exit 1
+          fi
