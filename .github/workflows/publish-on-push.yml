@@ -50,7 +50,25 @@ jobs:
 
       - name: Bump version (patch) and create tag
         run: |
-          npm version patch -m "ci: release %s"
+          # Ensure we have all remote tags so we don't accidentally recreate an existing one
+          git fetch --tags --force
+          # Read the current version from package.json
+          current_version=$(node -p "require('./package.json').version")
+          # Parse semantic version: major.minor.patch
+          IFS='.' read -r major minor patch <<< "$current_version"
+          # Propose next patch version (we will skip forward if that tag exists)
+          next_version="$major.$minor.$((patch + 1))"
+          # If a tag for the proposed version already exists, keep incrementing the patch
+          while git rev-parse -q --verify "refs/tags/v$next_version" >/dev/null; do
+            patch=$((patch + 1))
+            next_version="$major.$minor.$patch"
+          done
+          # Update package.json version only (avoid npm auto-tagging to prevent collisions)
+          npm version "$next_version" --no-git-tag-version
+          # Commit the version bump so the change is recorded
+          git commit -am "ci: release $next_version"
+          # Create an annotated tag for the new version
+          git tag -a "v$next_version" -m "ci: release $next_version"
 
       - name: Publish to npm
         env:
@@ -59,6 +77,8 @@ jobs:
           if npm publish --access public; then
             echo "✅ Package published successfully"
           else
+            # If publish fails, delete the tag that matches the current package.json version
+            # to avoid leaving a dangling release tag without a published package
             echo "❌ npm publish failed, rolling back git tag"
             git tag -d "v$(node -p "require('./package.json').version")"
             exit 1
@@ -68,6 +88,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          # Push both the commit and any tags created above
           if git push origin HEAD:main --follow-tags; then
             echo "✅ Changes and tags pushed successfully"
           else
