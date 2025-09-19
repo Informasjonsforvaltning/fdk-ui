@@ -52,7 +52,24 @@ jobs:
         run: |
           npm version patch -m "ci: release %s"
 
+      - name: Check if version already exists on npm
+        id: check_version
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_BOT_TOKEN }}
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          PACKAGE_NAME=$(node -p "require('./package.json').name")
+
+          if npm view "${PACKAGE_NAME}@${CURRENT_VERSION}" version >/dev/null 2>&1; then
+            echo "Version ${CURRENT_VERSION} already exists on npm"
+            echo "should_publish=false" >> $GITHUB_OUTPUT
+          else
+            echo "Version ${CURRENT_VERSION} does not exist on npm, proceeding with publish"
+            echo "should_publish=true" >> $GITHUB_OUTPUT
+          fi
+
       - name: Publish to npm
+        if: steps.check_version.outputs.should_publish == 'true'
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_BOT_TOKEN }}
         run: |
@@ -72,5 +89,11 @@ jobs:
             echo "✅ Changes and tags pushed successfully"
           else
             echo "❌ Failed to push changes to repository"
-            exit 1
+            # Don't exit with error if npm publish was skipped
+            if [[ "${{ steps.check_version.outputs.should_publish }}" == "false" ]]; then
+              echo "⚠️ Git push failed, but npm publish was skipped (version already exists)"
+              echo "You may need to manually sync the repository state"
+            else
+              exit 1
+            fi
           fi
