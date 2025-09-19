@@ -68,6 +68,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
         run: |
+          # Configure git to use the token for authentication
+          git remote set-url origin https://x-access-token:${{ secrets.BOT_ACCESS_TOKEN }}@github.com/Informasjonsforvaltning/fdk-ui.git
+
           if git push origin HEAD:main --follow-tags; then
             echo "✅ Changes and tags pushed successfully"
           else
