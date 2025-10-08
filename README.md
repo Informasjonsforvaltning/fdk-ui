@@ -2,7 +2,30 @@
 
 Library of React components for FDK frontend apps.
 
-## Getting started
+## How to use
+
+```bash
+yarn add @fellesdatakatalog/ui
+```
+
+```scss
+// In your app stylesheet
+@import '@fellesdatakatalog/ui/dist/styles.css';
+```
+
+```jsx
+import { HelpText } from '@fellesdatakatalog/ui';
+
+<HelpText>This is my helptext</HelpText>
+```
+
+Otherwise run this repo locally and have a look at the embedded Storybook for additional component documentation and usage examples.
+
+```bash
+yarn storybook
+```
+
+## Contributing
 
 ### Prerequisites
 
