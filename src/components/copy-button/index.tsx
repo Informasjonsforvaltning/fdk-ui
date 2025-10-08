@@ -39,7 +39,7 @@ const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, buttonProps, ...props
             placement='top'
         >
             <Button
-                {...({ size: 'sm' } as any)}
+                data-size='sm'
                 variant='secondary'
                 onClick={() => copyToClipboard(copyOnClick)}
                 onMouseOver={() => setClicked(false)}
