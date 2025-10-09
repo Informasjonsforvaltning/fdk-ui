@@ -9,10 +9,9 @@ type CopyButtonProps = {
     copyLabel: string;
     copiedLabel: string;
     copyOnClick: string;
-    buttonProps?: ButtonProps;
 };
 
-const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, buttonProps, ...props }: CopyButtonProps) => {
+const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, ...props }: CopyButtonProps & ButtonProps) => {
     const [clicked, setClicked] = useState(false);
 
     const copyToClipboard = (text: string) => {
@@ -43,7 +42,7 @@ const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, buttonProps, ...props
                 variant='secondary'
                 onClick={() => copyToClipboard(copyOnClick)}
                 onMouseOver={() => setClicked(false)}
-                {...buttonProps}
+                {...props}
             >
                 <FilesIcon aria-hidden />
                 <span className={'sr-only'}>{copyLabel}</span>
