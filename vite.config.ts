@@ -1,15 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
 
 export default defineConfig({
   plugins: [
-    react(),
-    dts({
-      insertTypesEntry: true,
-      rollupTypes: true,
-      exclude: ['**/*.stories.tsx', '**/*.test.tsx', '**/*.spec.tsx']
-    })
+    react()
   ],
   css: {
     modules: {
