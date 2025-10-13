@@ -9,9 +9,9 @@ type CopyButtonProps = {
     copyLabel: string;
     copiedLabel: string;
     copyOnClick: string;
-};
+} & ButtonProps;
 
-const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, ...props }: CopyButtonProps & ButtonProps) => {
+const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, ...props }: CopyButtonProps) => {
     const [clicked, setClicked] = useState(false);
 
     const copyToClipboard = (text: string) => {
