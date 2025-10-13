@@ -9,7 +9,7 @@ type CopyButtonProps = {
     copyLabel: string;
     copiedLabel: string;
     copyOnClick: string;
-} & ButtonProps;
+} & ButtonProps & React.HTMLAttributes<HTMLButtonElement>;
 
 const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, ...props }: CopyButtonProps) => {
     const [clicked, setClicked] = useState(false);
