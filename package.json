@@ -10,7 +10,8 @@
       "types": "./dist/types/index.d.ts",
       "import": "./dist/shared-ui.es.js",
       "require": "./dist/shared-ui.cjs"
-    }
+    },
+    "./dist/styles.css": "./dist/styles.css"
   },
   "files": [
     "dist",
