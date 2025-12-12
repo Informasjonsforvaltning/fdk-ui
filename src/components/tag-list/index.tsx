@@ -5,9 +5,10 @@ import styles from './styles.module.scss';
 
 export type TagListProps = {
     maxTags?: number;
+    'data-size'?: string;
 };
 
-const TagList = ({ children, className, maxTags, ...props }: TagListProps & React.HTMLAttributes<HTMLUListElement>) => {
+const TagList = ({ children, className, maxTags, 'data-size': dataSize, ...props }: TagListProps & React.HTMLAttributes<HTMLUListElement>) => {
     const childArray = React.Children.toArray(children);
     if (!childArray.length) return null;
     return (
@@ -26,7 +27,7 @@ const TagList = ({ children, className, maxTags, ...props }: TagListProps & Reac
                 })}
             {maxTags && maxTags < childArray.length && (
                 <li>
-                    <Tag data-size='sm'>
+                    <Tag data-size={dataSize || 'sm'}>
                         <span>+{childArray.length - maxTags}</span>
                     </Tag>
                 </li>
