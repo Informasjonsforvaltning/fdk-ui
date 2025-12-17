@@ -4,3 +4,8 @@ export { default as CopyButton } from './components/copy-button';
 export { default as HStack } from './components/hstack';
 export { default as VStack } from './components/vstack';
 export { HelpText } from './components/helptext';
+export { default as TagList } from './components/tag-list';
+export { default as RadioGroup } from './components/radio-group';
+export { default as CheckboxGroup } from './components/checkbox-group';
+export type { RadioGroupProps } from './components/radio-group';
+export type { CheckboxGroupProps } from './components/checkbox-group';
