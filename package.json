@@ -5,6 +5,10 @@
   "main": "dist/shared-ui.cjs",
   "module": "dist/shared-ui.es.js",
   "types": "dist/types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Informasjonsforvaltning/fdk-ui"
+  },
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",

@@ -11,9 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
           token: ${{ secrets.BOT_ACCESS_TOKEN }}
@@ -26,6 +27,9 @@ jobs:
         with:
           node-version: 20
           registry-url: 'https://registry.npmjs.org/'
+
+      - name: Upgrade npm for trusted publishing
+        run: npm i -g npm@^11.5.1
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -54,8 +58,6 @@ jobs:
           npm version patch -m "ci: release %s"
 
       - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_BOT_TOKEN }}
         run: |
           if npm publish --access public; then
             echo "✅ Package published successfully"
