@@ -15,10 +15,19 @@
       "import": "./dist/shared-ui.es.js",
       "require": "./dist/shared-ui.cjs"
     },
-    "./dist/styles.css": "./dist/styles.css"
+    "./dist/styles.css": "./dist/styles.css",
+    "./src/components/core/tokens.scss": "./src/components/core/tokens.scss",
+    "./src/components/core/tokens": "./src/components/core/tokens.scss",
+    "./src/components/core/mixins.scss": "./src/components/core/mixins.scss",
+    "./src/components/core/mixins": "./src/components/core/mixins.scss",
+    "./src/components/core/ds-overrides.scss": "./src/components/core/ds-overrides.scss",
+    "./src/components/core/ds-overrides": "./src/components/core/ds-overrides.scss",
+    "./src/components/core/reset.css": "./src/components/core/reset.css",
+    "./src/components/core/reset": "./src/components/core/reset.css"
   },
   "files": [
     "dist",
+    "src",
     "README.md"
   ],
   "scripts": {
