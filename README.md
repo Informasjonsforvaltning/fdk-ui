@@ -29,7 +29,7 @@ yarn storybook
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/download/) >=20.11.1
+- [Node.js](https://nodejs.org/en/download/) >=22
 - [yarn](https://yarnpkg.com/getting-started/install) >=4.9.4
 
 ### Running locally
