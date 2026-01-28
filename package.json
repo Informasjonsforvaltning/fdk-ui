@@ -87,6 +87,9 @@
     "@navikt/aksel-icons": "^7.39.0",
     "classnames": "^2.5.1"
   },
+  "resolutions": {
+    "tar": "^7.5.4"
+  },
   "packageManager": "yarn@4.9.4",
   "engines": {
     "node": ">=22"
