@@ -88,7 +88,8 @@
     "classnames": "^2.5.1"
   },
   "resolutions": {
-    "tar": "^7.5.4"
+    "tar": "^7.5.4",
+    "vite": "^7.1.11"
   },
   "packageManager": "yarn@4.9.4",
   "engines": {
