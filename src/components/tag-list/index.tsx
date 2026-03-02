@@ -1,11 +1,12 @@
 import React from 'react';
 import cn from 'classnames';
+import type { Size } from '@digdir/designsystemet-types';
 import { Tag } from '@digdir/designsystemet-react';
 import styles from './styles.module.scss';
 
 export type TagListProps = {
     maxTags?: number;
-    'data-size'?: string;
+    'data-size'?: Size;
 };
 
 const TagList = ({ children, className, maxTags, 'data-size': dataSize, ...props }: TagListProps & React.HTMLAttributes<HTMLUListElement>) => {
