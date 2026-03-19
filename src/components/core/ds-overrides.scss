@@ -65,13 +65,13 @@
 .ds-link {
     &:not(.ds-button) {
         // Target only passive state
-        &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
+        &:not(:hover):not(:focus):not(:focus-visible):not(:active) {
             color: var(--ds-color-text-subtle);
         }
     }
     &.ds-button {
         // Target only passive state
-        &:visited:not(:hover):not(:focus):not(:focus-visible):not(:active) {
+        &:not(:hover):not(:focus):not(:focus-visible):not(:active) {
             color: var(--dsc-button-color);
         }
     }
