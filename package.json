@@ -65,8 +65,8 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
-    "@vitest/browser-playwright": "^4.1.1",
-    "@vitest/coverage-v8": "^4.1.1",
+    "@vitest/browser-playwright": "^4.1.2",
+    "@vitest/coverage-v8": "^4.1.2",
     "concurrently": "^9.2.1",
     "playwright": "^1.58.2",
     "react": "^19.2.4",
@@ -77,20 +77,18 @@
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vite-plugin-dts": "^4.5.4",
-    "vitest": "^4.1.1"
+    "vitest": "^4.1.2"
   },
   "dependencies": {
     "@navikt/aksel-icons": "^7.39.0",
     "classnames": "^2.5.1"
   },
   "resolutions": {
-    "tar": ">=7.5.11",
     "glob": ">10.5.0",
-    "lodash": "^4.17.23",
-    "rollup": "^4.59.0",
-    "immutable": "^5.1.5",
     "minimatch": ">=10.2.3",
-    "ajv": ">=8.18.0"
+    "ajv": ">=8.18.0",
+    "micromatch/picomatch": "^2.3.2",
+    "picomatch": "^4.0.4"
   },
   "packageManager": "yarn@4.9.4",
   "engines": {
