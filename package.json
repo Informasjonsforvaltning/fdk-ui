@@ -75,7 +75,7 @@
     "storybook": "^10.3.4",
     "terser": "^5.46.1",
     "typescript": "^6.0.2",
-    "vite": "^7.3.1",
+    "vite": "^7.3.2",
     "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.1.2"
   },
@@ -84,11 +84,9 @@
     "classnames": "^2.5.1"
   },
   "resolutions": {
-    "glob": ">10.5.0",
-    "minimatch": ">=10.2.3",
     "ajv": ">=8.18.0",
-    "micromatch/picomatch": "^2.3.2",
-    "picomatch": "^4.0.4"
+    "glob": ">10.5.0",
+    "minimatch": ">=10.2.3"
   },
   "packageManager": "yarn@4.9.4",
   "engines": {
