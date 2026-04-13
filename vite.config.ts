@@ -17,7 +17,7 @@ export default defineConfig({
       formats: ['es', 'cjs'],
       fileName: (format) => (format === 'cjs' ? 'shared-ui.cjs' : `shared-ui.${format}.js`)
     },
-    rollupOptions: {
+    rolldownOptions: {
       external: [
         'react',
         'react-dom',
