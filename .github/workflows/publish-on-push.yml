@@ -7,71 +7,9 @@ on:
 
 jobs:
   release:
-    if: github.actor != 'fdk-bot'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      id-token: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.BOT_ACCESS_TOKEN }}
-
-      - name: Enable Corepack (Yarn 4)
-        run: corepack enable
-
-      - name: Setup Node.js
-        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444  # v5
-        with:
-          node-version: 22.22.1
-          registry-url: 'https://registry.npmjs.org/'
-
-      - name: Upgrade npm for trusted publishing
-        run: npm i -g npm@^11.5.1
-
-      - name: Install dependencies
-        run: yarn install --immutable
-
-      - name: Install Playwright browsers
-        run: yarn playwright install --with-deps
-
-      - name: Run tests
-        run: |
-          if yarn run -T test -v >/dev/null 2>&1; then
-            yarn test --run
-          else
-            echo "No tests configured, skipping"
-          fi
-
-      - name: Build package
-        run: yarn build
-
-      - name: Configure git user
-        run: |
-          git config user.name "fdk-bot"
-          git config user.email "fdk-bot@users.noreply.github.com"
-
-      - name: Bump version (patch) and create tag
-        run: |
-          npm version patch -m "ci: release %s"
-
-      - name: Publish to npm
-        run: |
-          if npm publish --access public; then
-            echo "✅ Package published successfully"
-          else
-            echo "❌ npm publish failed, rolling back git tag"
-            git tag -d "v$(node -p "require('./package.json').version")"
-            exit 1
-          fi
-
-      - name: Push changes and tags
-        run: |
-          if git push origin HEAD:main --follow-tags; then
-            echo "✅ Changes and tags pushed successfully"
-          else
-            echo "❌ Failed to push changes to repository"
-            exit 1
-          fi
+    name: Publish to npm
+    uses: Informasjonsforvaltning/workflows/.github/workflows/release-npm.yaml@main
+    with:
+      extra_setup_command: yarn playwright install --with-deps
+    secrets:
+      BOT_ACCESS_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
