@@ -96,7 +96,8 @@
     "@babel/core": "^7.29.6",
     "ws": ">=8.21.0",
     "@vitest/browser": "^4.1.10",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "ip-address": "^10.2.2"
   },
   "packageManager": "yarn@4.9.4",
   "engines": {
