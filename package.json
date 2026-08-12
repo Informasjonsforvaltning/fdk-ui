@@ -1,6 +1,6 @@
 {
   "name": "@fellesdatakatalog/ui",
-  "version": "1.0.47",
+  "version": "1.0.48",
   "description": "React UI components for Felles Datakatalog",
   "main": "dist/shared-ui.cjs",
   "module": "dist/shared-ui.es.js",
