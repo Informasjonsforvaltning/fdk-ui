@@ -98,7 +98,8 @@
     "@vitest/browser": "^4.1.10",
     "vitest": "^4.1.10",
     "ip-address": "^10.2.2",
-    "nanoid": "^3.3.17"
+    "nanoid": "^3.3.17",
+    "browserslist": "^4.28.7"
   },
   "packageManager": "yarn@4.9.4",
   "engines": {
