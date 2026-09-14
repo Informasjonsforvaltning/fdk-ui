@@ -96,7 +96,7 @@
     "@babel/core": "^7.29.6",
     "ws": ">=8.21.0",
     "@vitest/browser": "^4.1.10",
-    "vitest": "^4.1.10",
+    "vitest": "^4.1.11",
     "ip-address": "^10.2.2",
     "nanoid": "^3.3.17",
     "browserslist": "^4.28.7",
