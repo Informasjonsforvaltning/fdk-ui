@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { Button, type ButtonProps, Tooltip } from '@digdir/designsystemet-react';
-import { FilesIcon, CheckmarkCircleFillIcon } from '@navikt/aksel-icons';
-import HStack from '../hstack';
+import { FilesIcon } from '@navikt/aksel-icons';
 
 type CopyButtonProps = {
     copyLabel: string;
@@ -21,20 +20,7 @@ const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, ...props }: CopyButto
 
     return (
         <Tooltip
-            // @ts-expect-error: ignore complaint that Element cannot be set as content
-            content={
-                clicked ? (
-                    <HStack>
-                        <CheckmarkCircleFillIcon
-                            color='#D1F4E1'
-                            fontSize='1.2em'
-                        />
-                        {copiedLabel}
-                    </HStack>
-                ) : (
-                    copyLabel
-                )
-            }
+            content={clicked ? copiedLabel : copyLabel}
             placement='top'
         >
             <Button
