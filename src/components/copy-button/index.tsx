@@ -27,7 +27,7 @@ const CopyButton = ({ copyLabel, copiedLabel, copyOnClick, ...props }: CopyButto
                 data-size='sm'
                 variant='secondary'
                 onClick={() => copyToClipboard(copyOnClick)}
-                onMouseOver={() => setClicked(false)}
+                onMouseLeave={() => setClicked(false)}
                 {...props}
             >
                 <FilesIcon aria-hidden />
