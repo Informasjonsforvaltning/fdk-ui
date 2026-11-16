@@ -24,7 +24,11 @@ export default defineConfig({
         'classnames',
         'react/jsx-runtime',
         'react/jsx-dev-runtime',
-        /^@digdir\/designsystemet-react(\/.*)?$/
+        /^@digdir\/designsystemet-react(\/.*)?$/,
+        'react-markdown',
+        'remark-gfm',
+        'remark-parse',
+        'unified'
       ],
       output: {
         // No UMD globals needed when emitting CJS/ESM only

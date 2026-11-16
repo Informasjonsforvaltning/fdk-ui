@@ -1,0 +1,22 @@
+@use '../core/mixins' as core-mixins;
+
+.descriptionMarkdown {
+    @include core-mixins.article();
+    overflow-wrap: break-word;
+
+    pre {
+        overflow-x: auto;
+        padding: 1rem;
+        background: var(--ds-color-surface-tinted);
+        border-radius: 6px;
+
+        > code:not([class]) {
+            background: none;
+            padding: 0;
+        }
+    }
+}
+
+.tableWrapper {
+    overflow-x: auto;
+}

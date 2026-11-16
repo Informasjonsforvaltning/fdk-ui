@@ -35,6 +35,11 @@
     line-height: 1.5em;
     overflow-wrap: anywhere;
 
+    > * {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
     > * + * {
         margin-top: 1rem;
     }
@@ -78,7 +83,8 @@
     > h2,
     > h3,
     > h4,
-    > h5 {
+    > h5,
+    > h6 {
         &:not(:first-child) {
             margin-top: 1.5em;
         }
@@ -113,6 +119,24 @@
         }
     }
 
+    strong {
+        font-weight: bold;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    del {
+        text-decoration: line-through;
+    }
+
+    blockquote {
+        margin-inline: 0;
+        padding-left: 1rem;
+        border-left: 4px solid var(--ds-color-neutral-border-subtle);
+    }
+
     hr {
         height: 1px;
         border: 0;
@@ -127,12 +151,12 @@
 
     code {
         &:not([class]) {
-            background: rgba(0, 0, 0, 0.05);
+            background: var(--ds-color-surface-tinted);
             font-size: 0.85em;
             padding: 0.2em 0.4em;
             white-space: break-spaces;
             border-radius: 6px;
-            color: #444;
+            color: var(--ds-color-text-default);
         }
     }
 
