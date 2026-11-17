@@ -33,6 +33,7 @@
 
 @mixin article {
     line-height: 1.5em;
+    overflow-wrap: anywhere;
 
     > * + * {
         margin-top: 1rem;
