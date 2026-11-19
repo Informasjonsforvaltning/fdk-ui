@@ -3,33 +3,58 @@ import { expect, within } from 'storybook/test';
 
 import { DescriptionMarkdown } from '.';
 
-const issueDescription = `Dette er et testdatasett med **fet skrift** og *kursiv*.
+const markdown = `
+# Heading 1
 
-Et nytt avsnitt etter en tom linje.\\
-Et hardt linjeskift.
+## Heading 2
+
+### Heading 3
+
+#### Heading 4
+
+##### Heading 5
+
+###### Heading 6
 
 ---
 
-## Overskrift
+> This is a blockquote.
 
-- Punkt en
-- Punkt to
+Here is some **bold text**, *italic text*, and ~~strikethrough text~~.
 
-Se [data.norge.no](https://data.norge.no).
+A line break follows:  
+This is on a new line.
 
-| Kolonne | Verdi |
-| ------- | ----- |
-| a       | 1     |
+A [link to OpenAI](https://openai.com).
 
-![bilde](https://example.com/bilde.png)
+An inline \`code\` snippet.
 
-![](https://example.com/uten-alt.png)`;
+\`\`\`javascript
+console.log("Hello, Markdown!");
+\`\`\`
+
+- Unordered list item 1
+- Unordered list item 2
+
+1. Ordered list item 1
+2. Ordered list item 2
+
+| Table Header 1 | Table Header 2 |
+|---------------|---------------|
+| Row 1, Cell 1 | Row 1, Cell 2 |
+| Row 2, Cell 1 | Row 2, Cell 2 |
+
+An image:  
+![Alt text](https://via.placeholder.com/150)
+
+A <span style="color: red;">red span</span> (if HTML is supported).
+`;
 
 const meta: Meta<typeof DescriptionMarkdown> = {
     component: DescriptionMarkdown,
     title: 'DescriptionMarkdown',
     args: {
-        children: issueDescription,
+        children: markdown,
     },
     decorators: [
         (Story) => (
@@ -55,28 +80,38 @@ export const Full: Story = {
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
 
-        const bold = canvas.getByText('fet skrift');
+        const bold = canvas.getByText('bold text');
         await expect(bold.tagName).toBe('STRONG');
         await expect(Number(getComputedStyle(bold).fontWeight)).toBeGreaterThanOrEqual(700);
+        await expect(canvas.getByText('italic text').tagName).toBe('EM');
+        await expect(canvas.getByText('strikethrough text').tagName).toBe('DEL');
 
         const paragraphs = canvasElement.querySelectorAll('p');
         await expect(paragraphs.length).toBeGreaterThanOrEqual(2);
         await expect(parseFloat(getComputedStyle(paragraphs[1]).marginTop)).toBeGreaterThan(0);
 
-        await expect(paragraphs[1].querySelector('br')).not.toBeNull();
+        const lineBreak = canvas.getByText(/A line break follows:/).closest('p');
+        await expect(lineBreak?.querySelector('br')).not.toBeNull();
 
         const hr = canvasElement.querySelector('hr');
         await expect(hr).not.toBeNull();
         await expect(getComputedStyle(hr as Element).backgroundColor).not.toBe('rgba(0, 0, 0, 0)');
 
-        await expect(canvas.getByRole('heading', { level: 2, name: 'Overskrift' })).toBeInTheDocument();
-        await expect(canvas.getByRole('link', { name: 'data.norge.no' })).toHaveAttribute('href', 'https://data.norge.no');
+        await expect(canvas.getByText('This is a blockquote.').closest('blockquote')).not.toBeNull();
+
+        for (const level of [1, 2, 3, 4, 5, 6]) {
+            await expect(canvas.getByRole('heading', { level, name: `Heading ${level}` })).toBeInTheDocument();
+        }
+
+        await expect(canvas.getByRole('link', { name: 'link to OpenAI' })).toHaveAttribute('href', 'https://openai.com');
+        await expect(canvas.getByText('code').tagName).toBe('CODE');
+        await expect(canvas.getByText(/console\.log\("Hello, Markdown!"\)/)).toBeInTheDocument();
+        await expect(canvas.getAllByRole('list')).toHaveLength(2);
         await expect(canvas.getByRole('table')).toBeInTheDocument();
 
         const images = canvasElement.querySelectorAll('img');
-        await expect(images.length).toBe(2);
-        await expect(images[0]).toHaveAttribute('alt', 'bilde');
-        await expect(images[1]).toHaveAttribute('alt', '');
+        await expect(images.length).toBe(1);
+        await expect(images[0]).toHaveAttribute('alt', 'Alt text');
     },
 };
 
