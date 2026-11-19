@@ -1,0 +1,30 @@
+@use '../core/mixins' as core-mixins;
+
+.markdown {
+    @include core-mixins.article();
+
+    pre {
+        overflow-x: auto;
+        padding: 1rem;
+        background: var(--ds-color-surface-tinted);
+        border-radius: 6px;
+
+        > code:not([class]) {
+            background: none;
+            padding: 0;
+        }
+    }
+
+    [data-code-block] code {
+        background: none;
+        padding: 0;
+        border-radius: 0;
+        white-space: pre;
+        font-size: inherit;
+        color: inherit;
+    }
+}
+
+.tableWrapper {
+    overflow-x: auto;
+}

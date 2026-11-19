@@ -9,3 +9,10 @@ export { default as RadioGroup } from './components/radio-group';
 export { default as CheckboxGroup } from './components/checkbox-group';
 export type { RadioGroupProps } from './components/radio-group';
 export type { CheckboxGroupProps } from './components/checkbox-group';
+export {
+    default as Markdown,
+    CodeBlock,
+    allowedElements,
+    markdownToPlainText,
+} from './components/markdown';
+export type { MarkdownProps, CodeBlockProps } from './components/markdown';
