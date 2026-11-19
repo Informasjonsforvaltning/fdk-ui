@@ -172,7 +172,7 @@
         @include monospace();
 
         &:not([class]) {
-            background: var(--ds-color-surface-tinted);
+            background: var(--ds-color-neutral-background-tinted);
             font-size: 0.85em;
             padding: 0.2em 0.4em;
             white-space: break-spaces;

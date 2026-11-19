@@ -2,7 +2,6 @@
 
 .markdown {
     @include core-mixins.article();
-    overflow-wrap: break-word;
 
     pre {
         overflow-x: auto;
