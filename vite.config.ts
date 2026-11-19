@@ -28,7 +28,8 @@ export default defineConfig({
         'react-markdown',
         'remark-gfm',
         'remark-parse',
-        'unified'
+        'unified',
+        /^react-syntax-highlighter(\/.*)?$/
       ],
       output: {
         // No UMD globals needed when emitting CJS/ESM only

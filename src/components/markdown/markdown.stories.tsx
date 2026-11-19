@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect, within } from 'storybook/test';
 
-import { DescriptionMarkdown } from '.';
+import { Markdown } from '.';
 
 const markdown = `
 # Heading 1
@@ -50,9 +50,9 @@ An image:
 A <span style="color: red;">red span</span> (if HTML is supported).
 `;
 
-const meta: Meta<typeof DescriptionMarkdown> = {
-    component: DescriptionMarkdown,
-    title: 'DescriptionMarkdown',
+const meta: Meta<typeof Markdown> = {
+    component: Markdown,
+    title: 'Markdown',
     args: {
         children: markdown,
     },
@@ -66,7 +66,7 @@ const meta: Meta<typeof DescriptionMarkdown> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof DescriptionMarkdown>;
+type Story = StoryObj<typeof Markdown>;
 
 export const Full: Story = {
     decorators: [
@@ -105,7 +105,10 @@ export const Full: Story = {
 
         await expect(canvas.getByRole('link', { name: 'link to OpenAI' })).toHaveAttribute('href', 'https://openai.com');
         await expect(canvas.getByText('code').tagName).toBe('CODE');
-        await expect(canvas.getByText(/console\.log\("Hello, Markdown!"\)/)).toBeInTheDocument();
+        const codeBlock = canvasElement.querySelector('[data-code-block]');
+        await expect(codeBlock?.textContent).toContain('console.log("Hello, Markdown!")');
+        await expect(codeBlock?.closest('pre')).toBeNull();
+        await expect(canvas.getByRole('button', { name: 'Kopier' })).toBeInTheDocument();
         await expect(canvas.getAllByRole('list')).toHaveLength(2);
         await expect(canvas.getByRole('table')).toBeInTheDocument();
 

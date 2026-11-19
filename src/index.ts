@@ -10,8 +10,9 @@ export { default as CheckboxGroup } from './components/checkbox-group';
 export type { RadioGroupProps } from './components/radio-group';
 export type { CheckboxGroupProps } from './components/checkbox-group';
 export {
-    default as DescriptionMarkdown,
-    descriptionAllowedElements,
+    default as Markdown,
+    CodeBlock,
+    allowedElements,
     markdownToPlainText,
-} from './components/description-markdown';
-export type { DescriptionMarkdownProps } from './components/description-markdown';
+} from './components/markdown';
+export type { MarkdownProps, CodeBlockProps } from './components/markdown';

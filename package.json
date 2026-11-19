@@ -65,6 +65,7 @@
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@types/unist": "^3.0.3",
     "@vitejs/plugin-react": "^6.0.1",
     "@vitest/browser-playwright": "^4.1.10",
@@ -84,6 +85,7 @@
     "@navikt/aksel-icons": "^7.39.0",
     "classnames": "^2.5.1",
     "react-markdown": "^10.1.0",
+    "react-syntax-highlighter": "^16.1.2",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "unified": "^11.0.5"

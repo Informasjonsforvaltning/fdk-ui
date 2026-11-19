@@ -1,4 +1,4 @@
-export const descriptionAllowedElements: readonly string[] = [
+export const allowedElements: readonly string[] = [
     'p',
     'br',
     'strong',
