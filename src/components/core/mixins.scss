@@ -31,6 +31,30 @@
     color: var(--fdk-color-link-negative);
 }
 
+@mixin system-fonts {
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Roboto,
+        'Helvetica Neue',
+        Arial,
+        sans-serif;
+}
+
+@mixin monospace {
+    font-family:
+        ui-monospace,
+        'SFMono-Regular',
+        Menlo,
+        Monaco,
+        Consolas,
+        'Liberation Mono',
+        'Courier New',
+        monospace;
+}
+
 @mixin article {
     line-height: 1.5em;
     overflow-wrap: anywhere;
@@ -145,6 +169,8 @@
     }
 
     code {
+        @include monospace();
+
         &:not([class]) {
             background: var(--ds-color-surface-tinted);
             font-size: 0.85em;
@@ -156,6 +182,8 @@
     }
 
     pre {
+        @include monospace();
+
         > div:focus-visible {
             @include focus-block();
         }
