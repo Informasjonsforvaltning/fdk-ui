@@ -37,14 +37,16 @@ These are exported directly for consumers who need SCSS-level access.
 ### Build Output
 
 The library builds to:
-- `dist/shared-ui.es.js` (ESM)
-- `dist/shared-ui.cjs` (CommonJS)
+- `dist/shared-ui.es.js` (ESM entry) with one module per source file in `dist/es/`
+- `dist/shared-ui.cjs` (CommonJS entry) with one module per source file in `dist/cjs/`
 - `dist/styles.css` (bundled CSS)
 - `dist/types/` (TypeScript declarations)
 
+Modules are kept separate so `'use client'` directives apply per component (see `preserveUseClient` in `vite.config.ts`). Dependencies and peer dependencies from `package.json` are kept external.
+
 ### Key Dependencies
 
-- **React 19** - Uses `'use client'` directives for RSC compatibility
+- **React 19** - Uses `'use client'` directives for RSC compatibility. Only add one to modules that need it (state, effects, event handlers); components without it, like `Markdown`, can render on the server and receive function props from server components
 - **@digdir/designsystemet-react** - Base UI components (peer dependency)
 - **@navikt/aksel-icons** - Icon library
 - **CSS Modules** with camelCase class name convention

@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import cn from 'classnames';
 import ReactMarkdown, { type Components } from 'react-markdown';
@@ -23,6 +21,7 @@ export { allowedElements } from './allowed-elements';
 export { default as CodeBlock } from './code-block';
 export type { CodeBlockProps } from './code-block';
 export { markdownToPlainText } from './to-plain-text';
+export type { Components as MarkdownComponents } from 'react-markdown';
 
 export type MarkdownProps = {
     children?: string | null;
@@ -96,9 +95,12 @@ export const Markdown = ({
         );
     };
 
+    // A `code` override from the consumer replaces ours, and is what renders inside `pre`.
+    const codeComponent = components?.code && typeof components.code !== 'string' ? components.code : code;
+
     const pre = ({ node: _node, children: preChildren, ...props }: Props<'pre'>) => {
         const renderedByCode = React.Children.toArray(preChildren).some(
-            (child) => React.isValidElement(child) && child.type === code,
+            (child) => React.isValidElement(child) && child.type === codeComponent,
         );
 
         if (renderedByCode) return <>{preChildren}</>;
