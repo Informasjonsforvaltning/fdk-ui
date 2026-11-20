@@ -15,4 +15,4 @@ export {
     allowedElements,
     markdownToPlainText,
 } from './components/markdown';
-export type { MarkdownProps, CodeBlockProps } from './components/markdown';
+export type { MarkdownProps, MarkdownComponents, CodeBlockProps } from './components/markdown';

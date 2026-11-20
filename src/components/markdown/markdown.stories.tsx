@@ -155,6 +155,28 @@ export const CustomLink: Story = {
     },
 };
 
+export const CustomCode: Story = {
+    args: {
+        children: 'Inline `code`.\n\n```bash\ncurl https://data.norge.no\n```',
+        components: {
+            code: ({ children }) =>
+                String(children).includes('\n') ? (
+                    <div data-testid='custom-code-block'>{children}</div>
+                ) : (
+                    <code>{children}</code>
+                ),
+        },
+    },
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+        const codeBlock = canvas.getByTestId('custom-code-block');
+        await expect(codeBlock).toHaveTextContent('curl https://data.norge.no');
+        // An overridden `code` still has its surrounding <pre> unwrapped.
+        await expect(codeBlock.closest('pre')).toBeNull();
+        await expect(canvas.getByText('code').tagName).toBe('CODE');
+    },
+};
+
 export const Empty: Story = {
     args: {
         children: '',
